@@ -1,0 +1,32 @@
+
+body{
+  background-color: darkgrey;
+}
+
+#title-header{
+  background: black;
+  color: green;
+}
+
+h1{
+  text-align: center;
+}
+
+#race-track{
+  height: 154px;
+  border: 2px solid maroon;
+/**/i.e., border-size, border-style, border-color;
+}
+#player-1{
+  color: blue;
+  height: 50px;
+  height: 40px;
+  width: 40px;
+}
+img{
+  height: 40px;
+}
+
+.hidden  {
+  visibility: hidden
+}
