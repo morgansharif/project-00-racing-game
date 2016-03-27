@@ -4,8 +4,8 @@ body{
 }
 
 #title-header{
-  background: black;
-  color: green;
+  background: navy;
+  color: khaki;
 }
 
 h1{
@@ -13,17 +13,14 @@ h1{
 }
 
 #race-track{
-  height: 154px;
-  border: 2px solid maroon;
-/**/i.e., border-size, border-style, border-color;
+  border: 2px solid white;
+  margin: 100px, 30px, 100px, 30px;
+  background-color: #091919;
 }
-#player-1{
-  color: blue;
-  height: 50px;
-  height: 40px;
-  width: 40px;
-}
+
 img{
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 40px;
 }
 
