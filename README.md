@@ -12,6 +12,7 @@ A Racing Game, where two or more players can move their "cars" across the browse
 * CSS
 * javascript
 * jQuery
+* Bootstrap
 
 ## Existing Features
 
