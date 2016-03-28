@@ -2,15 +2,25 @@
 A Racing Game, where two or more players can move their "cars" across the browser to compete to make it to the finish line first.
 
 ##Main Functionality
+* Players must click the current highlighted key in their controls to accelerate their car.
+* If they hit the incorrect key they will decelerate.
+* The first player to reach the finish line wins.
 
 ## Technologies Used
 
-*What technologies did you use to develop this project? (bullet points)*
+* HTML
+* CSS
+* javascript
+* jQuery
 
 ## Existing Features
 
-*What features does your racing game have? (bullet points)*
+* Animated car sprites.
+* Reset button.
+* Unique controls for each player.
+* Updated target key to control car.
 
 ## Planned Features
 
-*What changes would you make to your project if you continue to work on it? (bullet points)*
+* Custom player-set controls
+* Further punish button mashing (perhaps make the person make that many correct moves in order until they can move again).
