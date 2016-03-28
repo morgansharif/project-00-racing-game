@@ -16,10 +16,15 @@ A Racing Game, where two or more players can move their "cars" across the browse
 
 ## Existing Features
 
-* Animated car sprites.
-* Reset button.
-* Unique controls for each player.
-* Updated target key to control car.
+* Two animated car sprites on a track.
+* A unique set of controls for each player (5 keys each)
+* Each player is assigned a target key which is highlighted until pressed.
+* When a player successfully presses their current target key their speed increases, they move a distance of their updated speed, and a new target key is randomly assigned for that player and highlighted on the game.
+* When a player hits an incorrect key from their controls (independently, or in combination with their target key), their current speed is reduced and they do not move.
+* When a player's car reaches the end of the track, a popup alerts them of the winner.
+* Reset button puts cars to beginning, and resets object values.
+
+
 
 ## Planned Features
 
