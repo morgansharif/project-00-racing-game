@@ -49,7 +49,6 @@ h1{
   color: white;
   background-color: blue;
   border: 10px solid green;
-
 }
 
 #race-track{
@@ -61,7 +60,7 @@ h1{
 img{
   margin-top: 10px;
   margin-bottom: 10px;
-  height: 40px;
+  width: 80px;
 }
 
 .hidden  {

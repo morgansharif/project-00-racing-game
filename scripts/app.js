@@ -1,89 +1,146 @@
+var raceOver = false;
+
 $(document).on("ready", function(){
 console.log('running');
 
-function Player(elemName, img, keySet){
+function Player(playerName, elemName, img, keySet, keyRow){
+  this.playerName = playerName;
   this.elemName = elemName;
   this.img = img;
   this.keySet = keySet;
+  this.keyRow = keyRow;
   this.currKeyIndex = 0;
   this.currKeyVal = this.keySet[ this.currKeyIndex ];
   this.currKeyCode = this.currKeyVal.charCodeAt();
   this.currWrongKeys = "";
-  this.speed = 100;
+  this.speed = 0;
+  this.dist = 0;
+  this.accelerate =
+    function(){
+      this.dist += this.speed;
+      if (this.speed <= 30){
+        this.speed = (this.speed + 5);
+      }
+      this.move();
+    };
+  this.decelerate =
+    function(){
+      if (this.speed >= 15){
+        this.speed = (this.speed - 15);
+      }else{
+        this.speed = 0;
+      }
+      this.move();
+    };
+
   this.move =
     function(){
-      console.log("right");
-       $(this.elemName).animate({ 'margin-left': ('+=' + this.speed) }, 'slow');
-      currMargin = ($('elemName').css('margin-right'));
-      //  console.log("currmargin: " + currMargin);
+       $(this.elemName).animate({ 'margin-left': ('+=' + (this.speed)) }, 200);
        this.setNewKey();
-       if ( currMargin === 0){
-         alert(this.elemName + " wins!");
-       }
+       this.isWinner();
     };
   this.setNewKey =
     function(){
       //set currKey to a random character (random int of 0-4) from the this.Keyset
       this.currKeyIndex = Math.floor( Math.random() * 5 );
-      console.log("i " + this.currKeyIndex + " in " + this.keySet);
+      //set current key val to new index #
       this.currKeyVal = this.keySet[ this.currKeyIndex ];
-      console.log("keyval= "+ this.currKeyVal);
+      //get character code for new key
       this.currKeyCode = this.currKeyVal.charCodeAt(0);
-      //build new wrongKey vals
+      //build set of new wrongKey vals to slow down current player if they click the wrong key
       this.currWrongKeys = [];
       for (var i in this.keySet){
-        if (i !== this.currKeyIndex){
           this.currWrongKeys.push(this.keySet[i]);
-        }
       }
-      console.log("currwrongKeys before splice = " + this.currWrongKeys);
       this.currWrongKeys.splice(this.currKeyIndex, 1);
       console.log("wrong keys= " + this.currWrongKeys);
       console.log("keyset= " + this.keySet);
-
-      // for (var i in this.keySet){
-      //   console.log("i= " + i + " | thiskeyset = " + this.keyset);
-      //   if (i === this.currKeyIndex){
-      //   } else{
-      //     console.log(i + " !== " + this.currKeyIndex);
-      //     this.currWrongKeys.push(this.keySet[i]);
-      //   }
-      // }
       console.log("new key is: " + this.currKeyCode + " '" + this.currKeyVal + "'");
+      var keyId = "#"+this.currKeyVal;
+      $(this.keyRow).removeClass("key-on");
+      console.log(keyId);
+      $(keyId).addClass("key-on");
+
+    };
+    //check for winner
+  this.isWinner =
+    function(){
+      //see if player has travelled to the finish line
+      if (this.dist >= 1030){
+        alert(this.playerName + " Wins!");
+        raceOver = true;
+        return true;
+      }else{
+        return false;
+      }
     };
 }
 
 
-// Player 1 Keys: ['q', 'w', 'e', 'r', 't'] charCode: [113, 119, 101, 114, 116]
-// Player 2 Keys: ['o', 'p', '[', ']', '\'] charCode: [111, 112,  91,  93,  92]
-
-    var p1 = new Player("#player-1", "blueCar.png", ['q', 'w', 'e', 'd', 'c'] );
-    var p2 = new Player("#player-2", "redCar.png" , [',', 'l', 'p', '[', ']'] );
-
-    console.log("P1 key is: " + p1.currKeyCode + " '" + p1.currKeyVal + "'");
-    console.log("p2 key is: " + p2.currKeyCode + " '" + p2.currKeyVal + "'");
+  // Set Player objects
+    var p1 = new Player("Player 1", "#player-1", "blueCar.png", ['q', 'w', 'e', 'd', 'c'], ".leftrow" );
+    var p2 = new Player("Player 2", "#player-2", "redCar.png" , ['n', 'j', 'i', 'o', 'p'], ".rightrow");
 
 
+  function isRightKey(keyPress, player){
+    if (keyPress === player.currKeyCode){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  function isWrongKey(keyPress, player){
+    if ( keyPress === player.currWrongKeys[0] || keyPress === player.currWrongKeys[1] || keyPress === player.currWrongKeys[2] || keyPress === player.currWrongKeys[3]){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 
 $(document).on("keypress",
   function(event) {
-    var currMargin = $('#player-1').css('margin-right');
     var maxWidth = $('#race-track').innerWidth();
     var keyPress = event.which;
-    console.log();
     console.log(keyPress + " pressed | checking for p1: " + p1.currKeyCode +" or p2: "+ p2.currKeyCode );
-    if (keyPress === p1.currKeyCode){
-      p1.move();
-    }else if (keyPress === p2.currKeyCode){
-      p2.move();
+
+    if (raceOver === false){
+      if (isRightKey(keyPress, p1)){
+        p1.accelerate();
+        return;
+      }else if (isRightKey(keyPress, p2)){
+        p2.accelerate();
+        return;
+      }else if (isWrongKey(keyPress, p1)){
+        p1.decelerate();
+        return;
+      }else if (isWrongKey(keyPress, p2)){
+        p2.decelerate();
+        return;
+      }
     }
   }
 );
 
-function move(player){
 
+
+$('button').on("click", function(){
+  reset();
+});
+
+function reset(){
+  $(p1.elemName).css({ 'margin-left': '0px' });
+  $(p2.elemName).css({ 'margin-left': '0px' });
+  p1.speed = 0;
+  p2.speed = 0;
+  p1.dist = 0;
+  p2.dist = 0;
+  p1.setNewKey();
+  p2.setNewKey();
+  raceOver = false;
 }
+
 
 // //popup window from button
 // $("button.info").on("click",
@@ -99,5 +156,6 @@ function move(player){
 
 
 
+console.log('racetrack width ='+ $('#race-track').width());
 
 });
