@@ -22,5 +22,8 @@ A Racing Game, where two or more players can move their "cars" across the browse
 
 ## Planned Features
 
-* Custom player-set controls
+* Custom player-set controls.
 * Further punish button mashing (perhaps make the person make that many correct moves in order until they can move again).
+* Improved imagery.
+
+<img src="screen_shot.png">
