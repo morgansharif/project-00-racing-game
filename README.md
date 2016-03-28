@@ -1,6 +1,8 @@
 # Project 00: Racing Game
 A Racing Game, where two or more players can move their "cars" across the browser to compete to make it to the finish line first.
 
+<a href="http://ambassador-frog-25183.bitballoon.com/">Play Racing Game</a>
+
 ##Main Functionality
 * Players must click the current highlighted key in their controls to accelerate their car.
 * If they hit the incorrect key they will decelerate.
@@ -31,5 +33,6 @@ A Racing Game, where two or more players can move their "cars" across the browse
 * Custom player-set controls.
 * Further punish button mashing (perhaps make the person make that many correct moves in order until they can move again).
 * Improved imagery.
+
 
 <img src="screen_shot.png">
