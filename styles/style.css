@@ -3,19 +3,59 @@ body{
   background-color: darkgrey;
 }
 
+.container{
+  padding: 10 10 10 ;
+
+}
+
 #title-header{
-  background: navy;
-  color: khaki;
+  background: lightblue;
+  color: black;
+  margin: 0 0 0 0;
+  padding: 10px;
+  border-color: green;
+  border: 3px solid grey;
+
+}
+#player-title{
+  text-align: center;
 }
 
 h1{
   text-align: center;
 }
 
+.key{
+  text-align: center;
+  border-color: white;
+
+  border-style: : 4px solid;
+  background-color: lightgreen;
+  color: black;
+  width: 80px;
+  height: 80px;
+  border: 3px solid grey;
+  margin: 5px;
+  display: inline-block;
+}
+
+#empty-button{
+  /*width: 60px;
+  height: 60px;*/
+  display: inline-block;
+}
+
+.key-on{
+  color: white;
+  background-color: blue;
+  border: 10px solid green;
+
+}
+
 #race-track{
   border: 2px solid white;
-  margin: 100px, 30px, 100px, 30px;
   background-color: #091919;
+  width: 1140px;
 }
 
 img{
